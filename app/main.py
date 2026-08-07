@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
@@ -7,11 +9,7 @@ from app.routes import router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    initialize_database()
-    seed_database()
-
-    initialize_datasets()
-    initialize_challenges()
+    # global state inits go here
     yield
 
 app = FastAPI(lifespan=lifespan)
