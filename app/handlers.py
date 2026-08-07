@@ -12,6 +12,8 @@ from fastapi import HTTPException
 def indexer_proxy(query: dict) -> dict:
     """\
     - payload must be the json DQL query for opensearch
+
+    this functon is to be used for querying the indexer from other functions
     """
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
