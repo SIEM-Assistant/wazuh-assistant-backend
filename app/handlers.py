@@ -17,10 +17,10 @@ def indexer_proxy(query: dict) -> dict:
     """
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-    url = f"{os.environ.get("WAZUH_INDEXER_HOST")}/wazuh-alerts-*/_search"
+    url = f"{os.environ["WAZUH_INDEXER_HOST"]}/wazuh-alerts-*/_search"
 
-    username = os.environ.get("WAZUH_USERNAME")
-    password = os.environ.get("WAZUH_PASSWORD")
+    username = os.environ["WAZUH_USERNAME"]
+    password = os.environ["WAZUH_PASSWORD"]
 
     response = requests.post(
         url,
