@@ -11,8 +11,6 @@ from .models import GenerateQueryRequest, GenerateQueryResponse
 
 
 
-
-
 def indexer_proxy(query: dict) -> dict:
     """\
     - payload must be the json DSL query for opensearch
@@ -39,7 +37,7 @@ def indexer_proxy(query: dict) -> dict:
     if response.status_code != 200:
         raise HTTPException(status_code=response.status_code, detail=response.text)
         return
-    
+
     return response.json()
 
 
@@ -49,11 +47,10 @@ def generate_query(payload: GenerateQueryRequest) -> GenerateQueryResponse:
     """
 
     user_prompt = payload.user_prompt
-    
+
     raw_response = llm_router.singular_message(user_prompt=user_prompt)
     # removing the first and last line markdown code block ```
     lines = raw_response.split("\n")[1:][:-1]
     response = "\n".join(lines)
-    
 
     return json.loads(response)
