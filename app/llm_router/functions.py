@@ -1,6 +1,8 @@
 import os
 import openai
 
+from . import training
+
 def raw_send_prompt_one_off(system_prompt: str, user_prompt: str) -> str:
     client = openai.OpenAI(
         base_url=os.environ["OPENAI_BASE_URL"],
@@ -22,3 +24,8 @@ def raw_send_prompt_one_off(system_prompt: str, user_prompt: str) -> str:
     )
 
     return response.choices[0].message.content
+
+
+def singular_message(user_prompt: str) -> str:
+    initial_system_prompt = training.initial_system_prompt
+    return raw_send_prompt_one_off(initial_system_prompt, user_prompt)
