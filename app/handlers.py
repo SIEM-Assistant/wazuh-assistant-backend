@@ -7,6 +7,8 @@ from fastapi import HTTPException
 
 from . import llm_router
 
+from .models import GenerateQueryRequest, GenerateQueryResponse
+
 
 
 
@@ -41,10 +43,12 @@ def indexer_proxy(query: dict) -> dict:
     return response.json()
 
 
-def generate_query(user_prompt: str) -> dict:
+def generate_query(payload: GenerateQueryRequest) -> GenerateQueryResponse:
     """\
     - user_prompt: must be prompt from user (SOC Analyst)
     """
+
+    user_prompt = payload.user_prompt
     
     raw_response = llm_router.singular_message(user_prompt=user_prompt)
     # removing the first and last line markdown code block ```
