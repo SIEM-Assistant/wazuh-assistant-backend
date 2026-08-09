@@ -154,3 +154,63 @@ Sample Response:
   }
 }
 ```
+
+
+### 2. POST `/generate-query`
+
+In the payload, provide prompt from user (SOC Analyst).
+
+Sample Payload:
+```json
+{
+  "user_prompt": "Write a query to filter top 2 most recent rule 550 alerts"
+}
+```
+
+The response will have a json object with 2 keys.
+
+- `message` will contain a message to be shown to the user, in text.
+- `query` will contain the query the user initially asked, as JSON object.
+
+Sample Response:
+```json
+{
+  "message": "Okay, I will generate the OpenSearch DSL query for your request.",
+  "query": {
+    "size": 2,
+    "_source": [
+      "@timestamp",
+      "agent.name",
+      "agent.ip",
+      "agent.id",
+      "rule.id",
+      "rule.level",
+      "rule.description",
+      "decoder.name",
+      "full_log"
+    ],
+    "query": {
+      "bool": {
+        "filter": [
+          {
+            "term": {
+              "rule.id": "550"
+            }
+          }
+        ]
+      }
+    },
+    "sort": [
+      {
+        "@timestamp": {
+          "order": "desc"
+        }
+      }
+    ]
+  }
+}
+```
+
+In the frontend, show the `message` part to the user and put the value of the `query` part in another code editor box that the user can edit and execute.
+
+When user executes, call the `/indexer-proxy` endpoint again.
