@@ -13,7 +13,7 @@ from . import llm_router
 
 def indexer_proxy(query: dict) -> dict:
     """\
-    - payload must be the json DQL query for opensearch
+    - payload must be the json DSL query for opensearch
 
     this functon is to be used for querying the indexer from other functions
     """
