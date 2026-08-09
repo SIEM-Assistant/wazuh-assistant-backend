@@ -53,4 +53,10 @@ def generate_query(payload: GenerateQueryRequest) -> GenerateQueryResponse:
     lines = raw_response.split("\n")[1:][:-1]
     response = "\n".join(lines)
 
-    return json.loads(response)
+    try:
+        return json.loads(response)
+    except json.decoder.JSONDecodeError as e:
+        raise HTTPException(
+            status_code=500,
+            detail="could not decode model output | " + str(e) + " | here is the raw model output: " + response
+        )
