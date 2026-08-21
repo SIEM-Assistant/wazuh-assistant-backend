@@ -2,7 +2,7 @@ import os
 import openai
 
 
-initial_system_prompt = """\
+query_generation_initial_system_prompt = """\
 You are deployed in a SOC environment. You will be queried by a backend that has access to Wazuh Indexer.
 
 Your primary purpose is to write OpenSearch DSL queries in JSON format that can be directly sent to Wazuh Indexer.

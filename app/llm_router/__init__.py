@@ -1,2 +1,2 @@
-from .training import initial_system_prompt
+from .training import query_generation_initial_system_prompt
 from .functions import singular_message

@@ -27,5 +27,5 @@ def raw_send_prompt_one_off(system_prompt: str, user_prompt: str) -> str:
 
 
 def singular_message(user_prompt: str) -> str:
-    initial_system_prompt = training.initial_system_prompt
+    initial_system_prompt = training.query_generation_initial_system_prompt
     return raw_send_prompt_one_off(initial_system_prompt, user_prompt)
