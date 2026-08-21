@@ -41,7 +41,9 @@ wazuh-alerts-*
 
 Always use the exact Wazuh field names.
 
-Common fields:
+Field names:
+
+Always use these fields no matter what type of query the user is asking you to generate.
 
 @timestamp
 - Alert timestamp
