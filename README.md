@@ -1,6 +1,6 @@
 # Wazuh Assistant Backend
 
-Experimental: not fully built yet
+Initial Working
 
 ## Docs
 
